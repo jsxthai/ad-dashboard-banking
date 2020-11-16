@@ -1,45 +1,41 @@
 import Footer from "../Footer/Footer";
 import NameNav from "../Nav/NameNav";
 
-const Payin = () => {
+const CreateUser = () => {
   return (
     <div className="main-panel">
       <div className="content">
         <div className="container-fluid ">
           {/* // content */}
-          <NameNav name={"Pay in"} />
+          <NameNav name={"Create user"} />
           <div className="row justify-content-center align-items-center">
-            <div className="col-md-8">
+            <div className="col-md-6">
               <div className="card">
                 <div className="card-header card-header-primary">
-                  <h4 className="card-title">Pay in</h4>
-                  <p className="card-category">Complete pay in</p>
+                  <h4 className="card-title">Create user</h4>
+                  <p className="card-category">Enter infomation</p>
                 </div>
                 <div className="card-body">
                   <form>
+                    {/* row */}
                     <div className="row">
-                      <div className="col-md-6">
+                      <div className="col-md-12">
                         <div className="form-group">
-                          <label className="bmd-label-floating">
-                            User name (disabled)
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            disabled
-                          ></input>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-group">
-                          <label className="bmd-label-floating">
-                            Account number
-                          </label>
+                          <label className="bmd-label-floating">Username</label>
                           <input type="text" className="form-control"></input>
                         </div>
                       </div>
                     </div>
-
+                    {/* row */}
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label className="bmd-label-floating">Password</label>
+                          <input type="text" className="form-control"></input>
+                        </div>
+                      </div>
+                    </div>
+                    {/* row */}
                     <div className="row">
                       <div className="col-md-12">
                         <div className="form-group">
@@ -50,45 +46,43 @@ const Payin = () => {
                         </div>
                       </div>
                     </div>
-
-                    <div className="row">
-                      <div className="col-md-6">
-                        <div className="form-group">
-                          <label className="bmd-label-floating">
-                            Cash number{" "}
-                          </label>
-                          <input type="text" className="form-control"></input>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-group">
-                          <label className="bmd-label-floating">
-                            Confirm cash
-                          </label>
-                          <input type="text" className="form-control"></input>
-                        </div>
-                      </div>
-                    </div>
+                    {/* row */}
                     <div className="row">
                       <div className="col-md-12">
                         <div className="form-group">
-                          <div className="form-group">
-                            <label className="bmd-label-floating">
-                              Comment
-                            </label>
-                            <textarea
-                              className="form-control"
-                              rows="5"
-                            ></textarea>
-                          </div>
+                          <label className="bmd-label-floating">Email</label>
+                          <input type="text" className="form-control"></input>
                         </div>
                       </div>
                     </div>
+                    {/* row */}
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label className="bmd-label-floating">
+                            Phone number
+                          </label>
+                          <input type="text" className="form-control"></input>
+                        </div>
+                      </div>
+                    </div>
+                    {/* row */}
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label className="bmd-label-floating">
+                            Balance default
+                          </label>
+                          <input type="text" className="form-control"></input>
+                        </div>
+                      </div>
+                    </div>
+                    {/* button  */}
                     <button
                       type="submit"
                       className="btn btn-primary pull-right"
                     >
-                      Pay In
+                      Create New User
                     </button>
                     <div className="clearfix"></div>
                   </form>
@@ -103,4 +97,4 @@ const Payin = () => {
   );
 };
 
-export default Payin;
+export default CreateUser;
