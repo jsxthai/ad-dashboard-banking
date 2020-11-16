@@ -6,15 +6,20 @@ import History from './components/History/History';
 import CreateUser from './components/CreateUser/CreateUser';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
-    const [isLogin, setIsLogin] = useState(false);
-    console.log(isLogin)
+    const [isLogin, setIsLogin] = useState('null');
+
+    useEffect(() => {
+        setIsLogin('employee');
+    }, [])
+
+
     return (
         <>
-            {isLogin
+            {isLogin === 'employee'
                 ? <div className="wrapper ">
                     <Nav />
                     <div className="main-panel">
