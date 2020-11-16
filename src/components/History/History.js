@@ -1,16 +1,15 @@
-import Footer from "../Footer/Footer";
 import NameNav from "../Nav/NameNav";
 
 const History = () => {
   return (
-    <div className="main-panel">
+    <>
       <NameNav name={"History"} />
       <div className="content">
         <div className="container-fluid ">
           <div className="row justify-content-center align-items-center">
             {/* // content */}
             {/* input  */}
-            <div className="col-md-8">
+            <div className="col-md-12">
               <div className="form-group">
                 <label className="bmd-label-floating">
                   Enter infor user ...
@@ -64,8 +63,7 @@ const History = () => {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 
