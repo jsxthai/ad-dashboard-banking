@@ -12,6 +12,6 @@ export function createUser(dataUser) {
     return axios.post(url, dataUser)
 }
 
-export function payInUser(id, payInData) {
-    return axios.patch(`${url}/${id}`, payInData)
+export function payInUser(accountNumber, balance) {
+    return axios.patch(`${url}/${accountNumber}`, balance)
 }
