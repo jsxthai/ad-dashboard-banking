@@ -17,7 +17,7 @@ function App() {
     const [isLogin, setIsLogin] = useState('null');
 
     useEffect(() => {
-        setIsLogin('admin');
+        setIsLogin('employee');
     }, [])
 
     const dispatch = useDispatch();
@@ -39,15 +39,18 @@ function App() {
                             <Route path='/history' component={History} exact />
                             <Route path='/create-user' component={CreateUser} exact />
                         </Switch>
+                        <Redirect to="/dashboard" />
                         <Footer></Footer>
                     </div>
                 </div>
-                : <Switch>
-                    <Route path="/login" component={CreateUser} exact>
-                        <Login />
-                    </Route>
+                : <>
+                    <Switch>
+                        <Route path="/login" >
+                            <Login />
+                        </Route>
+                    </Switch>
                     <Redirect to="/login" />
-                </Switch>
+                </>
             }
         </>
     );
