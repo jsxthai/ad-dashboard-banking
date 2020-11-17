@@ -1,6 +1,21 @@
+import { useSelector } from "react-redux";
 import NameNav from "../Nav/NameNav";
 
 const History = () => {
+  // use selector -> reducers
+  const users = useSelector((state) => state.users);
+
+  console.log(users);
+
+  const history = users.map((user, key) => (
+    <tr key={key}>
+      <td>{key + 1}</td>
+      <td>{user.fullname}</td>
+      <td className="text-info">{user.accountNumber}</td>
+      <td>{user.balance} VND</td>
+      <td>{new Date(user.createAt).toLocaleDateString("en-GB").toString()}</td>
+    </tr>
+  ));
   return (
     <>
       <NameNav name={"History"} />
@@ -33,28 +48,13 @@ const History = () => {
                         <tr>
                           <th>ID</th>
                           <th>Name</th>
-                          <th>Country</th>
-                          <th>City</th>
-                          <th>Salary</th>
+                          <th>Account Number</th>
+                          <th>Balance</th>
+                          <th>Create At</th>
                         </tr>
                       </thead>
                       {/* data  */}
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Dakota Rice</td>
-                          <td>Niger</td>
-                          <td>Oud-Turnhout</td>
-                          <td className="text-primary">$36,738</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Minerva Hooper</td>
-                          <td>Curaçao</td>
-                          <td>Sinaai-Waas</td>
-                          <td className="text-primary">$23,789</td>
-                        </tr>
-                      </tbody>
+                      <tbody>{history}</tbody>
                     </table>
                   </div>
                 </div>
