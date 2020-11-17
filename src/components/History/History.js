@@ -1,13 +1,19 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../../actions/users";
 import NameNav from "../Nav/NameNav";
 
 const History = () => {
   // use selector -> reducers
-  const users = useSelector((state) => state.users);
 
-  //   console.log(users);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
-  const history = users.map((user, key) => (
+  const state = useSelector((state) => state.users);
+
+  const history = state.map((user, key) => (
     <tr key={key}>
       <td>{key + 1}</td>
       <td>{user.fullname}</td>
