@@ -5,13 +5,15 @@ const History = () => {
   // use selector -> reducers
   const users = useSelector((state) => state.users);
 
-  console.log(users);
+  //   console.log(users);
 
   const history = users.map((user, key) => (
     <tr key={key}>
       <td>{key + 1}</td>
       <td>{user.fullname}</td>
-      <td className="text-info">{user.accountNumber}</td>
+      <td className="text-info">
+        {user.accountNumber}({user._id})
+      </td>
       <td>{user.balance} VND</td>
       <td>{new Date(user.createAt).toLocaleDateString("en-GB").toString()}</td>
     </tr>

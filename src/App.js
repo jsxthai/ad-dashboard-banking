@@ -1,7 +1,7 @@
 import Nav from './components/Nav/Nav';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
-import Payin from './components/Payin/Payin';
+import Payin from './components/PayIn/PayIn';
 import History from './components/History/History';
 import CreateUser from './components/CreateUser/CreateUser';
 import Footer from './components/Footer/Footer';
@@ -39,7 +39,6 @@ function App() {
                             <Route path='/history' component={History} exact />
                             <Route path='/create-user' component={CreateUser} exact />
                         </Switch>
-                        <Redirect to="/dashboard" />
                         <Footer></Footer>
                     </div>
                 </div>
@@ -49,7 +48,6 @@ function App() {
                             <Login />
                         </Route>
                     </Switch>
-                    <Redirect to="/login" />
                 </>
             }
         </>

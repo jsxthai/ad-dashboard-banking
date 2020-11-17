@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const url = 'https://jsx-banking-app.herokuapp.com/api/users';
+const url = 'https://jsx-banking-app.herokuapp.com/api/login';
 
-export function fetchUsers() {
-    return axios.get(url)
+export function login(dataUser) {
+    return axios.post(url, dataUser)
 }

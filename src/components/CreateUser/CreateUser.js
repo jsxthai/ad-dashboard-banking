@@ -1,6 +1,38 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import NameNav from "../Nav/NameNav";
+import { createUser } from "../../actions/users";
 
 const CreateUser = () => {
+  const [dataUser, setDataUser] = useState({
+    username: "",
+    password: "",
+    email: "",
+    phone: "",
+    fullname: "",
+  });
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setDataUser({
+      ...dataUser,
+      [e.target.name]: value,
+    });
+  };
+
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    if (e) e.preventDefault();
+    dispatch(createUser(dataUser));
+    setDataUser({
+      username: "",
+      password: "",
+      email: "",
+      phone: "",
+      fullname: "",
+    });
+  };
+
   return (
     <div className="content">
       <div className="container-fluid ">
@@ -14,13 +46,20 @@ const CreateUser = () => {
                 <p className="card-category">Enter infomation</p>
               </div>
               <div className="card-body">
-                <form>
+                <form onSubmit={handleSubmit}>
                   {/* row */}
                   <div className="row">
                     <div className="col-md-12">
                       <div className="form-group">
                         <label className="bmd-label-floating">Username</label>
-                        <input type="text" className="form-control"></input>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          value={dataUser.username}
+                          onChange={handleChange}
+                          required
+                        ></input>
                       </div>
                     </div>
                   </div>
@@ -29,7 +68,14 @@ const CreateUser = () => {
                     <div className="col-md-12">
                       <div className="form-group">
                         <label className="bmd-label-floating">Password</label>
-                        <input type="text" className="form-control"></input>
+                        <input
+                          type="password"
+                          className="form-control"
+                          name="password"
+                          value={dataUser.password}
+                          onChange={handleChange}
+                          required
+                        ></input>
                       </div>
                     </div>
                   </div>
@@ -38,7 +84,14 @@ const CreateUser = () => {
                     <div className="col-md-12">
                       <div className="form-group">
                         <label className="bmd-label-floating">Full name</label>
-                        <input type="text" className="form-control"></input>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="fullname"
+                          value={dataUser.fullname}
+                          onChange={handleChange}
+                          required
+                        ></input>
                       </div>
                     </div>
                   </div>
@@ -47,7 +100,14 @@ const CreateUser = () => {
                     <div className="col-md-12">
                       <div className="form-group">
                         <label className="bmd-label-floating">Email</label>
-                        <input type="text" className="form-control"></input>
+                        <input
+                          type="email"
+                          className="form-control"
+                          name="email"
+                          value={dataUser.email}
+                          onChange={handleChange}
+                          required
+                        ></input>
                       </div>
                     </div>
                   </div>
@@ -56,20 +116,17 @@ const CreateUser = () => {
                     <div className="col-md-12">
                       <div className="form-group">
                         <label className="bmd-label-floating">
-                          Phone number
+                          Phone number (10 digit)
                         </label>
-                        <input type="text" className="form-control"></input>
-                      </div>
-                    </div>
-                  </div>
-                  {/* row */}
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="form-group">
-                        <label className="bmd-label-floating">
-                          Balance default
-                        </label>
-                        <input type="text" className="form-control"></input>
+                        <input
+                          type="tel"
+                          className="form-control"
+                          name="phone"
+                          value={dataUser.phone}
+                          onChange={handleChange}
+                          pattern="[0-9]{10}"
+                          required
+                        ></input>
                       </div>
                     </div>
                   </div>

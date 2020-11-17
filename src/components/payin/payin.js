@@ -19,18 +19,6 @@ const Payin = () => {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label className="bmd-label-floating">
-                          User name (disabled)
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          disabled
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label className="bmd-label-floating">
                           Account number
                         </label>
                         <input type="text" className="form-control"></input>
@@ -42,7 +30,11 @@ const Payin = () => {
                     <div className="col-md-12">
                       <div className="form-group">
                         <label className="bmd-label-floating">Full name</label>
-                        <input type="text" className="form-control"></input>
+                        <input
+                          type="text"
+                          className="form-control"
+                          disabled
+                        ></input>
                       </div>
                     </div>
                   </div>
