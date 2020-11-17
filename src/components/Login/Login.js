@@ -1,14 +1,30 @@
 // import { useState } from "react";
 
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
 const Login = () => {
-  // const [state, setState] = useState({});
+  const [dataLogin, setDataLogin] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setDataLogin({
+      ...dataLogin,
+      [e.target.name]: value,
+    });
+  };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // dispatch(postLogin())
+  }, [dispatch]);
 
   return (
     <div className="content ">
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <div style={{ marginTop: "10%" }}></div>
       <div className="container-fluid ">
         <div className="row justify-content-center align-items-center">
           <div className="col-md-4">
@@ -24,7 +40,13 @@ const Login = () => {
                     <div className="col-md-12">
                       <div className="form-group">
                         <label className="bmd-label-floating">Username</label>
-                        <input type="text" className="form-control"></input>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          value={dataLogin.username}
+                          onChange={handleChange}
+                        ></input>
                       </div>
                     </div>
                   </div>
@@ -33,11 +55,16 @@ const Login = () => {
                     <div className="col-md-12">
                       <div className="form-group">
                         <label className="bmd-label-floating">Password</label>
-                        <input type="text" className="form-control"></input>
+                        <input
+                          type="password"
+                          className="form-control"
+                          name="password"
+                          value={dataLogin.password}
+                          onChange={handleChange}
+                        ></input>
                       </div>
                     </div>
                   </div>
-
                   {/* button  */}
                   <button type="submit" className="btn btn-primary pull-right">
                     Login

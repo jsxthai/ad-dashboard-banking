@@ -1,5 +1,5 @@
 import Nav from './components/Nav/Nav';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
 import Payin from './components/Payin/Payin';
 import History from './components/History/History';
@@ -42,7 +42,13 @@ function App() {
                         <Footer></Footer>
                     </div>
                 </div>
-                : <Login />}
+                : <Switch>
+                    <Route path="/login" component={CreateUser} exact>
+                        <Login />
+                    </Route>
+                    <Redirect to="/login" />
+                </Switch>
+            }
         </>
     );
 }
