@@ -1,39 +1,54 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
-  return (
-    <>
+    const [active, setActive] = useState({
+        das: true,
+        pay: false,
+        his: false,
+        cre: false,
+    })
 
-      <div
-        className="sidebar"
-        data-color="purple"
-        data-background-color="black"
-        data-image="https://images-na.ssl-images-amazon.com/images/I/51jIvKOEZeL._SL1000_.jpg"
-      >
-        <div className="logo">
-          {/* <Link to='/' className="simple-text logo-normal">EMPLOYEE</Link> */}
-          <div className="simple-text logo-normal" > EMPLOYEE</div>
-        </div>
-        <div className="sidebar-wrapper">
-          <ul className="nav">
-            <li className="nav-item active  ">
-              <Link to='/dashboard' className="nav-link"><i className="material-icons">dashboard</i>Dashboard</Link>
-            </li>
-            <li className="nav-item ">
-              {/* Link */}
-              <Link to='/payin' className="nav-link"><i className="material-icons">payment</i>Pay In User</Link>
-            </li>
-            <li className="nav-item ">
-              <Link to='/history' className="nav-link" ><i className="material-icons">payment</i>History User</Link>
-            </li>
-            <li className="nav-item ">
-              <Link to='/create-user' className="nav-link" ><i className="material-icons">person_add</i>Create User</Link>
-            </li>
-          </ul>
-        </div>
-      </div >
-    </>
-  );
+
+    const handleClick = (id) => {
+        setActive({
+            // ...active,
+            [id]: true
+        });
+    }
+
+    // console.log(active)
+    return (
+        <>
+            <div
+                className="sidebar bg-img-svg"
+                data-color="purple"
+                data-background-color="black"
+                data-image=""
+            >
+                <div className="logo">
+                    {/* <Link to='/' className="simple-text logo-normal">EMPLOYEE</Link> */}
+                    <div className="simple-text logo-normal" > EMPLOYEE</div>
+                </div>
+                <div className="sidebar-wrapper">
+                    <ul className="nav">
+                        <li className={active.das ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('das')}>
+                            <Link to='/dashboard' className="nav-link "><i className="material-icons">dashboard</i>Dashboard</Link>
+                        </li>
+                        <li className={active.pay ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('pay')}>
+                            <Link to='/payin' className="nav-link"><i className="material-icons">payment</i>Pay In User</Link>
+                        </li>
+                        <li className={active.his ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('his')}>
+                            <Link to='/history' className="nav-link" ><i className="material-icons">payment</i>History User</Link>
+                        </li>
+                        <li className={active.cre ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('cre')}>
+                            <Link to='/create-user' className="nav-link" ><i className="material-icons">person_add</i>Create User</Link>
+                        </li>
+                    </ul>
+                </div>
+            </div >
+        </>
+    );
 };
 
 export default Nav;

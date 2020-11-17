@@ -17,7 +17,7 @@ function App() {
     const [isLogin, setIsLogin] = useState('null');
 
     useEffect(() => {
-        setIsLogin('employee');
+        setIsLogin('admin');
     }, [])
 
     const dispatch = useDispatch();
