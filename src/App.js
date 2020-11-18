@@ -7,8 +7,8 @@ import CreateUser from './components/CreateUser/CreateUser';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchUsers } from './actions/users';
+// import { useDispatch } from 'react-redux';
+// import { fetchUsers } from './actions/users';
 
 
 
@@ -20,10 +20,10 @@ function App() {
         setIsLogin('employee');
     }, [])
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, [dispatch]);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(fetchUsers());
+    // }, [dispatch]);
 
 
     return (

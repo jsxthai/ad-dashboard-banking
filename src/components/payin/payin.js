@@ -1,13 +1,18 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import NameNav from "../Nav/NameNav";
 import { payInUser } from "../../actions/users";
+import { queryAccount } from "../../actions/accounts";
 
 const Payin = (e) => {
+  const user = useSelector((state) => state.accounts);
+
+  // state
   const [payInData, setPayInData] = useState({
     accountNumber: "",
     cash: "",
   });
+  const [fullname, setFullname] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -15,7 +20,6 @@ const Payin = (e) => {
       ...payInData,
       [e.target.name]: value,
     });
-    // console.log(payInData);
   };
 
   const dispatch = useDispatch();
@@ -27,6 +31,34 @@ const Payin = (e) => {
       cash: "",
     });
   };
+
+  const handleCheckAccount = async () => {
+    await dispatch(queryAccount(payInData.accountNumber));
+    // document.getElementById("accountNumber").setAttribute("disabled", true);
+  };
+
+  // const handleClear = () => {
+  //   setPayInData({
+  //     accountNumber: "",
+  //     cash: "",
+  //   });
+  //   setFullname("");
+  //   document.getElementById("accountNumber").removeAttribute("disabled");
+  // };
+
+  useEffect(() => {
+    console.log(user);
+
+    setFullname(user.fullname);
+  }, [user]);
+
+  // useEffect(() => {
+  //   if (!payInData.accountNumber)
+  //     document.getElementById("btn-check").setAttribute("disabled", true);
+  //   else {
+  //     document.getElementById("btn-check").removeAttribute("disabled");
+  //   }
+  // }, [payInData]);
 
   return (
     <div className="content">
@@ -49,23 +81,47 @@ const Payin = (e) => {
                           Account number
                         </label>
                         <input
+                          id="accountNumber"
                           type="text"
                           className="form-control"
                           name="accountNumber"
                           value={payInData.accountNumber}
                           onChange={handleChange}
+                          required
                         ></input>
                       </div>
                     </div>
+                    <div className="col-md-3">
+                      <button
+                        id="btn-check"
+                        type="button"
+                        className="btn btn-primary pull-right"
+                        onClick={handleCheckAccount}
+                      >
+                        Check account{" "}
+                      </button>
+                    </div>
+
+                    {/* <div className="col-md-3">
+                      <button
+                        type="button"
+                        className="btn btn-primary pull-right"
+                        onClick={handleClear}
+                      >
+                        Clear
+                      </button>
+                    </div> */}
                   </div>
 
                   <div className="row">
                     <div className="col-md-12">
                       <div className="form-group">
-                        <label className="bmd-label-floating">Full name</label>
+                        {/* <label className="bmd-label-floating">Full name</label> */}
                         <input
+                          placeholder="Full name"
                           type="text"
                           className="form-control"
+                          value={fullname || ""}
                           disabled
                         ></input>
                       </div>
@@ -85,6 +141,7 @@ const Payin = (e) => {
                           value={payInData.cash}
                           onChange={handleChange}
                           pattern="[0-9]{3,10}"
+                          required
                         ></input>
                       </div>
                     </div>
