@@ -5,13 +5,12 @@ import NameNav from "../Nav/NameNav";
 
 const History = () => {
   // use selector -> reducers
+  const state = useSelector((state) => state.users);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-
-  const state = useSelector((state) => state.users);
 
   const history = state.map((user, key) => (
     <tr key={key}>

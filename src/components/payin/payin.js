@@ -6,13 +6,23 @@ import { queryAccount } from "../../actions/accounts";
 
 const Payin = (e) => {
   const user = useSelector((state) => state.accounts);
-
+  const dispatch = useDispatch();
   // state
+  const [checked, setChecked] = useState(false);
+
   const [payInData, setPayInData] = useState({
     accountNumber: "",
     cash: "",
   });
+
   const [fullname, setFullname] = useState("");
+  useEffect(() => {
+    if (checked === false) {
+      setFullname("");
+    } else {
+      setFullname(user.fullname);
+    }
+  }, [user, checked]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -22,43 +32,15 @@ const Payin = (e) => {
     });
   };
 
-  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(payInUser(payInData.accountNumber, parseInt(payInData.cash)));
-    setPayInData({
-      accountNumber: "",
-      cash: "",
-    });
   };
 
   const handleCheckAccount = async () => {
     await dispatch(queryAccount(payInData.accountNumber));
-    // document.getElementById("accountNumber").setAttribute("disabled", true);
+    setChecked(true);
   };
-
-  // const handleClear = () => {
-  //   setPayInData({
-  //     accountNumber: "",
-  //     cash: "",
-  //   });
-  //   setFullname("");
-  //   document.getElementById("accountNumber").removeAttribute("disabled");
-  // };
-
-  useEffect(() => {
-    // console.log(user);
-
-    setFullname(user.fullname);
-  }, [user]);
-
-  // useEffect(() => {
-  //   if (!payInData.accountNumber)
-  //     document.getElementById("btn-check").setAttribute("disabled", true);
-  //   else {
-  //     document.getElementById("btn-check").removeAttribute("disabled");
-  //   }
-  // }, [payInData]);
 
   return (
     <div className="content">

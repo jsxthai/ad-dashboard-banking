@@ -5,6 +5,7 @@ export const queryAccount = (accountNumber) => async (dispatch) => {
         const response = await api.queryAccount(accountNumber);
         dispatch({ type: 'QUERY_ACCOUNT', payload: response })
     } catch (error) {
-        console.log(error)
+        // console.log(error)
+        dispatch({ type: 'CLEAR_QUERY_ACCOUNT' })
     }
 }
