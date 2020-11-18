@@ -36,7 +36,9 @@ const Nav = () => {
                 })
                 break;
             default:
-                break;
+                setActive({
+                    das: true
+                });
         }
 
     }, [lastURL])
