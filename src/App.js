@@ -1,11 +1,11 @@
 import Nav from './components/Nav/Nav';
 import { Switch, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard/Dashboard';
-import Payin from './components/PayIn/PayIn';
-import History from './components/History/History';
-import CreateUser from './components/CreateUser/CreateUser';
-import Footer from './components/Footer/Footer';
-import Login from './components/Login/Login';
+import Dashboard from './components/Dashboard/Dashboard.js';
+import Payin from './components/PayIn/PayIn.js';
+import History from './components/History/History.js';
+import CreateUser from './components/CreateUser/CreateUser.js';
+import Footer from './components/Footer/Footer.js';
+import Login from './components/Login/Login.js';
 import { useEffect, useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { fetchUsers } from './actions/users';
