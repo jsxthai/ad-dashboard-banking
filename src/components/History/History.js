@@ -17,6 +17,11 @@ const History = () => {
                 <input type="text" className="form-control"></input>
               </div>
             </div>
+            <div className="col-md-6">
+              <button type="" className="btn btn-primary  ">
+                Search history
+              </button>
+            </div>
 
             {/* // table */}
             <div className="col-md-12">

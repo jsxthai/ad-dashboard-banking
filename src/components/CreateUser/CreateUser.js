@@ -39,7 +39,7 @@ const CreateUser = () => {
         {/* // content */}
         <NameNav name={"Create user"} />
         <div className="row justify-content-center align-items-center">
-          <div className="col-md-6">
+          <div className="col-md-7">
             <div className="card">
               <div className="card-header card-header-primary">
                 <h4 className="card-title">Create user</h4>

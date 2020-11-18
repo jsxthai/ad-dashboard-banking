@@ -67,11 +67,11 @@ const Nav = () => {
                         <li className={active.das ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('das')}>
                             <Link to='/dashboard' className="nav-link "><i className="material-icons">dashboard</i>Dashboard</Link>
                         </li>
-                        <li className={active.pay ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('pay')}>
-                            <Link to='/payin' className="nav-link"><i className="material-icons">payment</i>Pay In User</Link>
-                        </li>
                         <li className={active.his ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('his')}>
-                            <Link to='/history' className="nav-link" ><i className="material-icons">payment</i>History User</Link>
+                            <Link to='/history' className="nav-link" ><i className="material-icons">search</i>History User</Link>
+                        </li>
+                        <li className={active.pay ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('pay')}>
+                            <Link to='/payin' className="nav-link"><i className="material-icons">add</i>Pay In User</Link>
                         </li>
                         <li className={active.cre ? 'nav-item active' : 'nav-item'} onClick={() => handleClick('cre')}>
                             <Link to='/create-user' className="nav-link" ><i className="material-icons">person_add</i>Create User</Link>
