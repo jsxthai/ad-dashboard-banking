@@ -1,13 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
+
+
     const [active, setActive] = useState({
-        das: true,
+        das: false,
         pay: false,
         his: false,
         cre: false,
     })
+
+    const hr = window.location.href.split('/');
+    const lastURL = hr[hr.length - 1]
+    useEffect(() => {
+        switch (lastURL) {
+            case 'dashboard':
+                setActive({
+                    das: true
+                })
+                break;
+            case 'history':
+                setActive({
+                    his: true
+                })
+                break;
+            case 'payin':
+                setActive({
+                    pay: true
+                })
+                break;
+            case 'create-user':
+                setActive({
+                    cre: true
+                })
+                break;
+            default:
+                break;
+        }
+
+    }, [lastURL])
 
 
     const handleClick = (id) => {

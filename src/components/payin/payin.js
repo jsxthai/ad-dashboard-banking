@@ -47,7 +47,7 @@ const Payin = (e) => {
   // };
 
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
 
     setFullname(user.fullname);
   }, [user]);
