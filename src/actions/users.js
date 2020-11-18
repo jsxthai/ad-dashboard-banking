@@ -24,11 +24,13 @@ export const createUser = (dataUser) => async (dispatch) => {
 export const payInUser = (accountNumber, money) => async (dispatch) => {
     try {
         const response = await api.payInUser(accountNumber, money);
-        console.log(response.data)
-        // if(response)
+        // console.log(response)
+        if (response.status === 200) {
+            alert('Pay in successed')
+        }
         dispatch({ type: PAY_IN, payload: response.data })
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         alert('Thông tin không đúng\n Giao dịch thất bại')
     }
 }

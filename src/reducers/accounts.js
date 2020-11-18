@@ -8,7 +8,8 @@ export default function accounts(state = initialState, { type, payload }) {
         case 'CLEAR_QUERY_ACCOUNT':
             return {
                 ...state,
-                fullname: ''
+                fullname: '',
+                email: ''
             };
         default:
             return state;

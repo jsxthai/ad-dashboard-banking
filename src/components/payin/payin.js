@@ -15,12 +15,15 @@ const Payin = (e) => {
     cash: "",
   });
 
-  const [fullname, setFullname] = useState("");
+  const [dataUser, setDataUser] = useState({});
   useEffect(() => {
     if (checked === false) {
-      setFullname("");
+      setDataUser("");
     } else {
-      setFullname(user.fullname);
+      setDataUser({
+        fullname: user.fullname,
+        email: user.email,
+      });
     }
   }, [user, checked]);
 
@@ -35,6 +38,11 @@ const Payin = (e) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(payInUser(payInData.accountNumber, parseInt(payInData.cash)));
+    setChecked(false);
+    setPayInData({
+      accountNumber: "",
+      cash: "",
+    });
   };
 
   const handleCheckAccount = async () => {
@@ -48,7 +56,7 @@ const Payin = (e) => {
         {/* // content */}
         <NameNav name={"Pay in"} />
         <div className="row justify-content-center align-items-center">
-          <div className="col-md-8">
+          <div className="col-md-7">
             <div className="card">
               <div className="card-header card-header-primary">
                 <h4 className="card-title">Pay in</h4>
@@ -73,7 +81,7 @@ const Payin = (e) => {
                         ></input>
                       </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-4">
                       <button
                         id="btn-check"
                         type="button"
@@ -83,27 +91,29 @@ const Payin = (e) => {
                         Check account{" "}
                       </button>
                     </div>
-
-                    {/* <div className="col-md-3">
-                      <button
-                        type="button"
-                        className="btn btn-primary pull-right"
-                        onClick={handleClear}
-                      >
-                        Clear
-                      </button>
-                    </div> */}
                   </div>
 
                   <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-6">
                       <div className="form-group">
                         {/* <label className="bmd-label-floating">Full name</label> */}
                         <input
                           placeholder="Full name"
                           type="text"
                           className="form-control"
-                          value={fullname || ""}
+                          value={dataUser.fullname || ""}
+                          disabled
+                        ></input>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        {/* <label className="bmd-label-floating">Full name</label> */}
+                        <input
+                          placeholder="Email"
+                          type="text"
+                          className="form-control"
+                          value={dataUser.email || ""}
                           disabled
                         ></input>
                       </div>

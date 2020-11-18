@@ -7,5 +7,6 @@ export const queryAccount = (accountNumber) => async (dispatch) => {
     } catch (error) {
         // console.log(error)
         dispatch({ type: 'CLEAR_QUERY_ACCOUNT' })
+        alert('Account number: ' + accountNumber + ' not found')
     }
 }

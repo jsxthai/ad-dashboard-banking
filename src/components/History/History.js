@@ -1,37 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../actions/users";
 import NameNav from "../Nav/NameNav";
-
+// justify-content-center align-items-center
 const History = () => {
-  // use selector -> reducers
-  const state = useSelector((state) => state.users);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
-
-  const history = state.map((user, key) => (
-    <tr key={key}>
-      <td>{key + 1}</td>
-      <td>{user.fullname}</td>
-      <td className="text-info">
-        {user.accountNumber}({user._id})
-      </td>
-      <td>{user.balance} VND</td>
-      <td>{new Date(user.createAt).toLocaleDateString("en-GB").toString()}</td>
-    </tr>
-  ));
   return (
     <>
       <NameNav name={"History"} />
       <div className="content">
         <div className="container-fluid ">
-          <div className="row justify-content-center align-items-center">
+          <div className="row ">
             {/* // content */}
             {/* input  */}
-            <div className="col-md-12">
+            <div className="col-md-6">
               <div className="form-group">
                 <label className="bmd-label-floating">
                   Enter infor user ...
@@ -39,6 +17,7 @@ const History = () => {
                 <input type="text" className="form-control"></input>
               </div>
             </div>
+
             {/* // table */}
             <div className="col-md-12">
               <div className="card">
@@ -53,15 +32,39 @@ const History = () => {
                     <table className="table">
                       <thead className=" text-primary">
                         <tr>
-                          <th>ID</th>
-                          <th>Name</th>
-                          <th>Account Number</th>
-                          <th>Balance</th>
-                          <th>Create At</th>
+                          <th></th>
+                          <th>Date</th>
+                          <th>Account number</th>
+                          <th>Money number</th>
+                          <th>Type</th>
+                          <th>Details</th>
                         </tr>
                       </thead>
                       {/* data  */}
-                      <tbody>{history}</tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>11/11/2020</td>
+                        <td>111111111</td>
+                        <td className="text-info">1111</td>
+                        <td>Transfer</td>
+                        <td>ABC</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>11/11/2020</td>
+                        <td>111111111</td>
+                        <td className="text-info">1111</td>
+                        <td>Receive money</td>
+                        <td>ABC</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>11/11/2020</td>
+                        <td>111111111</td>
+                        <td className="text-info">1111</td>
+                        <td>Payment reminder</td>
+                        <td>ABC</td>
+                      </tr>
                     </table>
                   </div>
                 </div>
