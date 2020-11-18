@@ -1,6 +1,78 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import NameNav from "../Nav/NameNav";
-// justify-content-center align-items-center
+import { queryAccount } from "../../actions/accounts";
+
 const History = () => {
+  // case: infoAccount is accountNumber
+
+  const account = useSelector((state) => state.accounts);
+  const [infoAccount, setInfoAccount] = useState("");
+  const [rowData, setRowData] = useState("");
+
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(queryAccount(infoAccount));
+  };
+
+  useEffect(() => {
+    // console.log(account);
+    let row = [];
+    if (account.transfer) {
+      const transfer = account.transfer;
+      row = [...row, ...transfer];
+    }
+    if (account.receive) {
+      const receive = account.receive;
+      row = [...row, ...receive];
+    }
+    row = row.map((item, key) => {
+      return (
+        <tr key={key + 1}>
+          <td>{key + 1}</td>
+          <td>
+            {new Date(parseInt(item.date))
+              .toLocaleDateString("en-GB")
+              .toString()}
+            {" - "}
+            {new Date(parseInt(item.date))
+              .toLocaleTimeString("it-IT")
+              .toString()}
+          </td>
+          <td>{account.accountNumber}</td>
+          <td>
+            {" "}
+            {(item.money || 0).toLocaleString("en-US", {
+              // style: "currency",
+              currency: "VND",
+            })}{" "}
+            VND
+          </td>
+          <td className="text-info">{item.type}</td>
+          <td>{item.details}</td>
+        </tr>
+      );
+    });
+    setRowData(row);
+  }, [account]);
+
+  useEffect(() => {
+    if (infoAccount === "") {
+      setRowData("");
+      setInfoAccount("");
+    }
+  }, [infoAccount]);
+
+  const handleChangeInputInfoAccount = (e) => {
+    setInfoAccount(e.target.value);
+  };
+
+  const handleClear = () => {
+    setRowData("");
+    setInfoAccount("");
+    dispatch({ type: "CLEAR_QUERY_ACCOUNT" });
+  };
+
   return (
     <>
       <NameNav name={"History"} />
@@ -12,14 +84,31 @@ const History = () => {
             <div className="col-md-6">
               <div className="form-group">
                 <label className="bmd-label-floating">
-                  Enter infor user ...
+                  Enter account number ...
                 </label>
-                <input type="text" className="form-control"></input>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="infoAccount"
+                  value={infoAccount}
+                  onChange={handleChangeInputInfoAccount}
+                ></input>
               </div>
             </div>
             <div className="col-md-6">
-              <button type="" className="btn btn-primary  ">
+              <button
+                type=""
+                className="btn btn-primary pull-left"
+                onClick={handleClick}
+              >
                 Search history
+              </button>
+              <button
+                type=""
+                className="btn btn-info pull-left"
+                onClick={handleClear}
+              >
+                Clear
               </button>
             </div>
 
@@ -45,31 +134,9 @@ const History = () => {
                           <th>Details</th>
                         </tr>
                       </thead>
-                      {/* data  */}
-                      <tr>
-                        <td>1</td>
-                        <td>11/11/2020</td>
-                        <td>111111111</td>
-                        <td className="text-info">1111</td>
-                        <td>Transfer</td>
-                        <td>ABC</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>11/11/2020</td>
-                        <td>111111111</td>
-                        <td className="text-info">1111</td>
-                        <td>Receive money</td>
-                        <td>ABC</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>11/11/2020</td>
-                        <td>111111111</td>
-                        <td className="text-info">1111</td>
-                        <td>Payment reminder</td>
-                        <td>ABC</td>
-                      </tr>
+                      {/* c2 */}
+                      {/* <tbody>{rowData.length > 0 ? rowData : null}</tbody> */}
+                      <tbody>{rowData || null}</tbody>
                     </table>
                   </div>
                 </div>
