@@ -1,6 +1,6 @@
 import Nav from './components/Nav/Nav';
 import { Switch, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard/Dashboard.js';
+import Dashboard from './components/Dashboard/Dashboard';
 import Payin from './components/PayIn/PayIn';
 import History from './components/History/History';
 import CreateUser from './components/CreateUser/CreateUser';
