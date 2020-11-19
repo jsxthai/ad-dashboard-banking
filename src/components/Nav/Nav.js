@@ -55,10 +55,9 @@ const Nav = () => {
     return (
         <>
             <div
-                className="sidebar bg-img-svg"
+                className="sidebar"
                 data-color="purple"
                 data-background-color="black"
-                data-image=""
             >
                 <div className="logo">
                     {/* <Link to='/' className="simple-text logo-normal">EMPLOYEE</Link> */}

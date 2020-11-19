@@ -6,8 +6,8 @@ import History from './components/History/History.js';
 import CreateUser from './components/CreateUser/CreateUser.js';
 import Footer from './components/Footer/Footer.js';
 import Login from './components/Login/Login.js';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { fetchUsers } from './actions/users';
 
@@ -15,15 +15,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
     const stateLogin = useSelector((state) => state.login);
-    console.log('app', stateLogin)
-    // const [isLogin, setIsLogin] = useState('null');
     const [isLogin, setIsLogin] = useState(stateLogin.isLogin);
-    console.log(isLogin)
-    // const dispatch = useDispatch()
-    // dispatch({ type: "CHECK_LOGIN" });
 
 
-    // const dispatch = useDispatch();
+
     useEffect(() => {
         setIsLogin(stateLogin.isLogin)
     }, [stateLogin]);

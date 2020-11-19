@@ -1,4 +1,11 @@
+import { useDispatch } from "react-redux";
+
 const NameNav = (props) => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
       <div className="container-fluid">
@@ -9,7 +16,7 @@ const NameNav = (props) => {
         </div>
       </div>
       <div className="collapse navbar-collapse justify-content-end">
-        <p>User1</p>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </nav>
   );

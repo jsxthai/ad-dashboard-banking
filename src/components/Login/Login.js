@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { postLogin } from "../../actions/login";
 
 const Login = () => {
@@ -8,7 +8,6 @@ const Login = () => {
     password: "",
   });
   const dispatch = useDispatch();
-  const stateLogin = useSelector((state) => state.login);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -27,7 +26,7 @@ const Login = () => {
     // I have token in local store
     dispatch({ type: "CHECK_LOGIN" });
     // check token is valid, (để sau)
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="content ">

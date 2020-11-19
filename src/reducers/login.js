@@ -5,6 +5,10 @@ const initialState = {
     userData: {},
     token: localStorage.getItem('xx-token')
 }
+// chưa check 
+if (initialState.token) {
+    initialState.isLogin = true
+}
 
 export default function employee(state = initialState, action) {
     switch (action.type) {
@@ -22,7 +26,14 @@ export default function employee(state = initialState, action) {
                 }
             }
             return state;
-
+        case 'LOGOUT':
+            localStorage.clear()
+            return {
+                ...state,
+                isLogin: false,
+                token: null,
+                userData: {}
+            }
         default:
             return state;
     }
