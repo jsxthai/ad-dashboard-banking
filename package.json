@@ -17,7 +17,7 @@
         "redux-thunk": "^2.3.0",
         "web-vitals": "^0.2.4"
     },
-    "homepage": "https:://jsxthai.github.io/fontend-banking",
+    "homepage": "/fontend-banking",
     "scripts": {
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
