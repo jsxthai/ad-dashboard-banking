@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/://jsxthai.github.io/fontend-banking/static/js/main.58c56dbe.chunk.js",
+    "main.js.map": "/://jsxthai.github.io/fontend-banking/static/js/main.58c56dbe.chunk.js.map",
+    "runtime-main.js": "/://jsxthai.github.io/fontend-banking/static/js/runtime-main.911f500d.js",
+    "runtime-main.js.map": "/://jsxthai.github.io/fontend-banking/static/js/runtime-main.911f500d.js.map",
+    "static/js/2.ca7f307f.chunk.js": "/://jsxthai.github.io/fontend-banking/static/js/2.ca7f307f.chunk.js",
+    "static/js/2.ca7f307f.chunk.js.map": "/://jsxthai.github.io/fontend-banking/static/js/2.ca7f307f.chunk.js.map",
+    "index.html": "/://jsxthai.github.io/fontend-banking/index.html",
+    "static/js/2.ca7f307f.chunk.js.LICENSE.txt": "/://jsxthai.github.io/fontend-banking/static/js/2.ca7f307f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.911f500d.js",
+    "static/js/2.ca7f307f.chunk.js",
+    "static/js/main.58c56dbe.chunk.js"
+  ]
+}
