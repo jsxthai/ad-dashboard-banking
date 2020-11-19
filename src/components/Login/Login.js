@@ -1,26 +1,33 @@
-// import { useState } from "react";
-
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { postLogin } from "../../actions/login";
 
 const Login = () => {
-  const [dataLogin, setDataLogin] = useState({
+  const [loginData, setLoginData] = useState({
     username: "",
     password: "",
   });
+  const dispatch = useDispatch();
+  const stateLogin = useSelector((state) => state.login);
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setDataLogin({
-      ...dataLogin,
+    setLoginData({
+      ...loginData,
       [e.target.name]: value,
     });
   };
 
-  const dispatch = useDispatch();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(postLogin(loginData));
+  };
+
   useEffect(() => {
-    // dispatch(postLogin())
-  }, [dispatch]);
+    // I have token in local store
+    dispatch({ type: "CHECK_LOGIN" });
+    // check token is valid, (để sau)
+  }, []);
 
   return (
     <div className="content ">
@@ -34,7 +41,7 @@ const Login = () => {
                 <p className="card-category">Enter infomation</p>
               </div>
               <div className="card-body">
-                <form>
+                <form onSubmit={handleLogin}>
                   {/* row */}
                   <div className="row">
                     <div className="col-md-12">
@@ -44,7 +51,7 @@ const Login = () => {
                           type="text"
                           className="form-control"
                           name="username"
-                          value={dataLogin.username}
+                          value={loginData.username}
                           onChange={handleChange}
                         ></input>
                       </div>
@@ -59,7 +66,7 @@ const Login = () => {
                           type="password"
                           className="form-control"
                           name="password"
-                          value={dataLogin.password}
+                          value={loginData.password}
                           onChange={handleChange}
                         ></input>
                       </div>

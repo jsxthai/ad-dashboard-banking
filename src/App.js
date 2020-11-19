@@ -6,29 +6,32 @@ import History from './components/History/History.js';
 import CreateUser from './components/CreateUser/CreateUser.js';
 import Footer from './components/Footer/Footer.js';
 import Login from './components/Login/Login.js';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { fetchUsers } from './actions/users';
 
 
 
 function App() {
+    const stateLogin = useSelector((state) => state.login);
+    console.log('app', stateLogin)
+    // const [isLogin, setIsLogin] = useState('null');
+    const [isLogin, setIsLogin] = useState(stateLogin.isLogin);
+    console.log(isLogin)
+    // const dispatch = useDispatch()
+    // dispatch({ type: "CHECK_LOGIN" });
 
-    const [isLogin, setIsLogin] = useState('null');
-
-    useEffect(() => {
-        setIsLogin('employee');
-    }, [])
 
     // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(fetchUsers());
-    // }, [dispatch]);
+    useEffect(() => {
+        setIsLogin(stateLogin.isLogin)
+    }, [stateLogin]);
 
 
     return (
         <>
-            {isLogin === 'employee'
+            {isLogin
                 ? <div className="wrapper ">
                     <Nav />
                     <div className="main-panel">
@@ -44,7 +47,7 @@ function App() {
                 </div>
                 : <>
                     <Switch>
-                        <Route path="/login" >
+                        <Route path="/" >
                             <Login />
                         </Route>
                     </Switch>
