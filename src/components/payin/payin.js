@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NameNav from "../Nav/NameNav";
-import { payInUser } from "../../actions/users";
+import { payInUser } from "../../actions/payin";
 import { queryAccount } from "../../actions/accounts";
+
 
 const Payin = (e) => {
   const user = useSelector((state) => state.accounts);

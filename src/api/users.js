@@ -12,8 +12,8 @@ export function createUser(dataUser) {
     return axios.post(url, dataUser)
 }
 
-export function payInUser(accountNumber, money) {
-    return axios.put(`${url}/${accountNumber}`, {
-        balance: money
-    })
-}
+// export function payInUser(accountNumber, money) {
+//     return axios.put(`${url}/${accountNumber}`, {
+//         balance: money
+//     })
+// }
