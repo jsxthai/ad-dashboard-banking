@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import { postLogin } from "../../actions/login";
 
 const Login = () => {
+  const [formState, setFormState] = useState({
+    isSubmit: false,
+  });
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -11,15 +14,18 @@ const Login = () => {
 
   const handleChange = (e) => {
     const value = e.target.value;
+
     setLoginData({
       ...loginData,
       [e.target.name]: value,
     });
   };
 
-  const handleLogin = (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    dispatch(postLogin(loginData));
+    await setFormState({ isSubmit: true });
+    await dispatch(postLogin(loginData));
+    await setFormState({ isSubmit: false });
   };
 
   useEffect(() => {
@@ -29,7 +35,7 @@ const Login = () => {
   }, [dispatch]);
 
   return (
-    <div className="content ">
+    <div className="content">
       <div style={{ marginTop: "10%" }}></div>
       <div className="container-fluid ">
         <div className="row justify-content-center align-items-center">
@@ -40,7 +46,7 @@ const Login = () => {
                 <p className="card-category">Enter infomation</p>
               </div>
               <div className="card-body">
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSubmitLogin}>
                   {/* row */}
                   <div className="row">
                     <div className="col-md-12">
@@ -52,6 +58,7 @@ const Login = () => {
                           name="username"
                           value={loginData.username}
                           onChange={handleChange}
+                          required
                         ></input>
                       </div>
                     </div>
@@ -67,12 +74,17 @@ const Login = () => {
                           name="password"
                           value={loginData.password}
                           onChange={handleChange}
+                          required
                         ></input>
                       </div>
                     </div>
                   </div>
                   {/* button  */}
-                  <button type="submit" className="btn btn-primary pull-right">
+                  <button
+                    type="submit"
+                    className="btn btn-primary pull-right"
+                    disabled={formState.isSubmit}
+                  >
                     Login
                   </button>
                   <div className="clearfix"></div>

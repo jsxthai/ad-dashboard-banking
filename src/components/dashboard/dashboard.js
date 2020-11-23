@@ -30,14 +30,6 @@ const Dashboard = () => {
       <td>{user.fullname}</td>
       <td className="text-info">{user.accountNumber}</td>
       <td>{user.email}</td>
-      {/* <td className="text-danger">
-        {(user.balance || 0).toLocaleString("en-US", {
-          // style: "currency",
-          currency: "VND",
-        })}{" "}
-        VND
-      </td> */}
-      {/* <td>{new Date(user.createAt).toLocaleDateString("en-GB").toString()}</td> */}
       <td>{user.phone}</td>
       <td>
         {new Date(parseInt(user.createAt))

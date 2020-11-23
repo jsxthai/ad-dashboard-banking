@@ -12,7 +12,7 @@ export const postLogin = (loginData) => async (dispatch) => {
     dispatch({ type: LOGIN, payload: response.data });
   } catch (error) {
     // console.log(error.response.data)
-    alert("Username or password i correct");
+    alert("Incorrect username or password");
     dispatch({ type: LOGIN_FAIL, payload: false });
   }
 };

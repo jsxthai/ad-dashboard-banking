@@ -1,4 +1,4 @@
-import { LOGIN } from "../constants/actionTypes";
+import { CHECK_LOGIN, LOGIN, LOGOUT } from "../constants/actionTypes";
 
 const initialState = {
   isLogin: false,
@@ -20,7 +20,7 @@ export default function employee(state = initialState, action) {
         token: action.payload.token ? action.payload.token : state.token,
         userData: action.payload.userData,
       };
-    case "CHECK_LOGIN":
+    case CHECK_LOGIN:
       if (state.token) {
         return {
           ...state,
@@ -28,7 +28,7 @@ export default function employee(state = initialState, action) {
         };
       }
       return state;
-    case "LOGOUT":
+    case LOGOUT:
       localStorage.clear();
       return {
         ...state,

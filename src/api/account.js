@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-const url = 'http://localhost:7777/api/accounts';
+const url = "/api/accounts";
 
 export const queryAccount = (accountNumber) => {
-    return axios.get(`${url}/${accountNumber}`)
-}
+  return axios.get(`${url}/${accountNumber}`);
+};

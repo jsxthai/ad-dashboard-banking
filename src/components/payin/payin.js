@@ -40,11 +40,6 @@ const Payin = (e) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     /////////
-    console.log(
-      payInData.accountNumber,
-      parseInt(payInData.cash),
-      payInData.detail
-    );
     dispatch(
       payInUser(
         payInData.accountNumber,
@@ -56,6 +51,7 @@ const Payin = (e) => {
     setPayInData({
       accountNumber: "",
       cash: "",
+      detail: "",
     });
   };
 
@@ -110,7 +106,6 @@ const Payin = (e) => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        {/* <label className="bmd-label-floating">Full name</label> */}
                         <input
                           placeholder="Full name"
                           type="text"
@@ -122,7 +117,6 @@ const Payin = (e) => {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        {/* <label className="bmd-label-floating">Full name</label> */}
                         <input
                           placeholder="Email"
                           type="text"
@@ -151,14 +145,6 @@ const Payin = (e) => {
                         ></input>
                       </div>
                     </div>
-                    {/* <div className="col-md-6">
-                      <div className="form-group">
-                        <label className="bmd-label-floating">
-                          Confirm cash
-                        </label>
-                        <input type="text" className="form-control"></input>
-                      </div>
-                    </div> */}
                   </div>
                   <div className="row">
                     <div className="col-md-12">

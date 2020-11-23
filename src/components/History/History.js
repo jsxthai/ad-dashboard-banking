@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NameNav from "../Nav/NameNav";
 import { fetchHistory } from "../../actions/history";
+import { CLEAR_QUERY_ACCOUNT } from "../../constants/actionTypes";
 
 const History = () => {
   const historyTrans = useSelector((state) => state.history);
@@ -69,7 +70,7 @@ const History = () => {
   const handleClear = () => {
     setRowData("");
     setAccountNumber("");
-    dispatch({ type: "CLEAR_QUERY_ACCOUNT" });
+    dispatch({ type: CLEAR_QUERY_ACCOUNT });
   };
 
   const handleChangeSelect = (e) => {
