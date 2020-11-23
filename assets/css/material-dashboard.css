@@ -58,7 +58,8 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
+  background-image: url(https://www.infrascale.com/wp-content/uploads/jpg/bg-img-protected-city-with-shade-1920x1080-1.jpg);
 }
 
 [tabindex="-1"]:focus {
@@ -15888,6 +15889,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   /* Safari */
   /* Safari 6.1+ */
   display: flex;
+  color: #f3f3f3;
 }
 
 .footer ul {
@@ -16016,7 +16018,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .sidebar[data-background-color="black"] {
-  background-color: #191919;
+  background-color: rgb(17 18 19 / 79%);
 }
 
 .sidebar .sidebar-wrapper {
