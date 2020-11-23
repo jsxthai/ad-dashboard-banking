@@ -4,9 +4,9 @@ import NameNav from "../Nav/NameNav";
 import { fetchHistory } from "../../actions/history";
 
 const History = () => {
-  const history = useSelector((state) => state.history);
+  const historyTrans = useSelector((state) => state.history);
   const [accountNumber, setAccountNumber] = useState("");
-  const [selectType, setSelectType] = useState("transfer");
+  const [selectType, setSelectType] = useState("all");
   const [rowData, setRowData] = useState("");
 
   const dispatch = useDispatch();
@@ -15,36 +15,45 @@ const History = () => {
   };
 
   useEffect(() => {
-    // console.log(history);
-    const row = history.map((his, key) => {
-      return (
-        <tr key={key + 1}>
-          <td>{key + 1}</td>
-          <td>
-            {new Date(parseInt(his.date))
-              .toLocaleDateString("en-GB")
-              .toString()}
-            {" - "}
-            {new Date(parseInt(his.date))
-              .toLocaleTimeString("it-IT")
-              .toString()}
-          </td>
-          <td>{his.accountSource}</td>
-          <td>
-            {" "}
-            {(his.mount || 0).toLocaleString("en-US", {
-              // style: "currency",
-              currency: "VND",
-            })}{" "}
-            VND
-          </td>
-          <td className="text-info">{his.typeTrans}</td>
-          <td>{his.detail}</td>
-        </tr>
-      );
-    });
+    // console.log(selectType);
+    // console.log(typeof selectType);
+    const row = historyTrans
+      .filter((history) => {
+        if (selectType === "all") {
+          return true;
+        }
+        return history.typeTrans === selectType;
+      })
+      .map((his, key) => {
+        return (
+          <tr key={key + 1}>
+            <td>{key + 1}</td>
+            <td>
+              {new Date(parseInt(his.date))
+                .toLocaleDateString("en-GB")
+                .toString()}
+              {" - "}
+              {new Date(parseInt(his.date))
+                .toLocaleTimeString("it-IT")
+                .toString()}
+            </td>
+            <td>{his.accountSource}</td>
+            <td>
+              {" "}
+              {(his.mount || 0).toLocaleString("en-US", {
+                // style: "currency",
+                currency: "VND",
+              })}{" "}
+              VND
+            </td>
+            <td className="text-info">{his.typeTrans}</td>
+            <td>{his.detail}</td>
+          </tr>
+        );
+      });
+
     setRowData(row);
-  }, [history]);
+  }, [historyTrans, selectType]);
 
   useEffect(() => {
     if (accountNumber === "") {
@@ -65,7 +74,6 @@ const History = () => {
 
   const handleChangeSelect = (e) => {
     setSelectType(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
@@ -91,7 +99,7 @@ const History = () => {
               </div>
             </div>
 
-            <div className="col-md-2">
+            <div className="col-md-4">
               <div className="form-group">
                 <select
                   className="custom-select"
@@ -99,10 +107,10 @@ const History = () => {
                   onChange={handleChangeSelect}
                   value={selectType}
                 >
-                  <option value>Select type</option>
-                  <option value={1}>Transfer</option>
-                  <option value={2}>Receive money</option>
-                  <option value={3}>Debt payment</option>
+                  <option value={"all"}>Select type (All)</option>
+                  <option value={"transfer"}>Transfer</option>
+                  <option value={"receive"}>Receive money</option>
+                  <option value={"debt payment"}>Debt payment</option>
                 </select>
               </div>
             </div>

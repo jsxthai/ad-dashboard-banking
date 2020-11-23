@@ -4,7 +4,6 @@ import NameNav from "../Nav/NameNav";
 import { payInUser } from "../../actions/payin";
 import { queryAccount } from "../../actions/accounts";
 
-
 const Payin = (e) => {
   const user = useSelector((state) => state.accounts);
   const dispatch = useDispatch();
@@ -14,6 +13,7 @@ const Payin = (e) => {
   const [payInData, setPayInData] = useState({
     accountNumber: "",
     cash: "",
+    detail: "",
   });
 
   const [dataUser, setDataUser] = useState({});
@@ -21,6 +21,7 @@ const Payin = (e) => {
     if (checked === false) {
       setDataUser("");
     } else {
+      // tự động điền tên email khi nhập đúng account, checked
       setDataUser({
         fullname: user.fullname,
         email: user.email,
@@ -38,7 +39,19 @@ const Payin = (e) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(payInUser(payInData.accountNumber, parseInt(payInData.cash)));
+    /////////
+    console.log(
+      payInData.accountNumber,
+      parseInt(payInData.cash),
+      payInData.detail
+    );
+    dispatch(
+      payInUser(
+        payInData.accountNumber,
+        parseInt(payInData.cash),
+        payInData.detail
+      )
+    );
     setChecked(false);
     setPayInData({
       accountNumber: "",
@@ -153,6 +166,9 @@ const Payin = (e) => {
                         <div className="form-group">
                           <label className="bmd-label-floating">Comment</label>
                           <textarea
+                            name="detail"
+                            value={payInData.detail}
+                            onChange={handleChange}
                             className="form-control"
                             rows="5"
                           ></textarea>
