@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const url = 'https://jsx-banking-app.herokuapp.com/api/users';
-const url = "/api/payins";
+// const url = "/api/payins";
+const url = `${process.env.REACT_APP_URL}/api/payins`;
 
 export function payInUser(accountNumber, money, detail, token) {
   return axios.put(
