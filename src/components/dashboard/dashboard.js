@@ -1,16 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NameNav from "../Nav/NameNav";
 import { fetchUsers } from "../../actions/users";
+import { getTotalUser } from "../../api/users";
 
 const Dashboard = () => {
   // use selector -> reducers
   const state = useSelector((state) => state.users);
+  const [totalUsers, settotalUsers] = useState(0);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchUsers());
+    const startDate = new Date(Date.now()).setHours(0, 0, 0);
+    dispatch(fetchUsers(startDate));
   }, [dispatch]);
+
+  //
+  useEffect(() => {
+    const fetchTotalUsers = async () => {
+      const getTotal = await getTotalUser();
+      settotalUsers(getTotal.data.totalUsers || 0);
+    };
+    fetchTotalUsers();
+  }, []);
 
   const listUserNew = state.map((user, key) => (
     <tr key={key}>
@@ -50,29 +62,12 @@ const Dashboard = () => {
                   <div className="card-icon">
                     <i className="material-icons">person</i>
                   </div>
-                  <p className="card-category">Pay in</p>
-                  <h3 className="card-title">+23.056.200</h3>
+                  <p className="card-category">Total User</p>
+                  <h3 className="card-title">{totalUsers} users</h3>
                 </div>
                 <div className="card-footer">
                   <div className="stats">
-                    <i className="material-icons">date_range</i> Last 24 Hours
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-6">
-              <div className="card card-stats">
-                <div className="card-header card-header-danger card-header-icon">
-                  <div className="card-icon">
-                    <i className="material-icons">info_outline</i>
-                  </div>
-                  <p className="card-category">Fixed Issues</p>
-                  <h3 className="card-title">75</h3>
-                </div>
-                <div className="card-footer">
-                  <div className="stats">
-                    <i className="material-icons">local_offer</i> Tracked from
-                    Github
+                    <i className="material-icons">update</i> Just Updated
                   </div>
                 </div>
               </div>
@@ -81,14 +76,15 @@ const Dashboard = () => {
               <div className="card card-stats">
                 <div className="card-header card-header-info card-header-icon">
                   <div className="card-icon">
-                    <i className="fa fa-twitter" />
+                    <i className="material-icons">info_outline</i>
                   </div>
-                  <p className="card-category">Total User</p>
-                  <h3 className="card-title">+336.232</h3>
+                  <p className="card-category">Fixed Issues</p>
+                  <h3 className="card-title">{0}</h3>
                 </div>
                 <div className="card-footer">
                   <div className="stats">
-                    <i className="material-icons">update</i> Just Updated
+                    <i className="material-icons">local_offer</i> Tracked from
+                    Github
                   </div>
                 </div>
               </div>
@@ -100,8 +96,8 @@ const Dashboard = () => {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-header card-header-primary">
-                  <h4 className="card-title ">List user new</h4>
-                  <p className="card-category">{} </p>
+                  <h4 className="card-title ">List user</h4>
+                  <p className="card-category">User was created today</p>
                 </div>
                 <div className="card-body">
                   <div className="table-responsive">

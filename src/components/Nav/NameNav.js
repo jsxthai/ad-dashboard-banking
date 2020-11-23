@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const NameNav = (props) => {
+  const username = useSelector((state) => state.login.userData);
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -15,8 +16,17 @@ const NameNav = (props) => {
           </a>
         </div>
       </div>
+
+      <div className="collapse navbar-collapse justify-content-end"></div>
       <div className="collapse navbar-collapse justify-content-end">
-        <button onClick={handleLogout}>Logout</button>
+        <button
+          onClick={handleLogout}
+          type="submit"
+          className="btn  pull-right"
+        >
+          <i className="material-icons">person</i>
+          {username} - LOGOUT
+        </button>
       </div>
     </nav>
   );

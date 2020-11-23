@@ -16,47 +16,6 @@ const History = () => {
   };
 
   useEffect(() => {
-    // console.log(account);
-    let row = [];
-    if (account.transfer) {
-      const transfer = account.transfer;
-      row = [...row, ...transfer];
-    }
-    if (account.receive) {
-      const receive = account.receive;
-      row = [...row, ...receive];
-    }
-    row = row.map((item, key) => {
-      return (
-        <tr key={key + 1}>
-          <td>{key + 1}</td>
-          <td>
-            {new Date(parseInt(item.date))
-              .toLocaleDateString("en-GB")
-              .toString()}
-            {" - "}
-            {new Date(parseInt(item.date))
-              .toLocaleTimeString("it-IT")
-              .toString()}
-          </td>
-          <td>{account.accountNumber}</td>
-          <td>
-            {" "}
-            {(item.money || 0).toLocaleString("en-US", {
-              // style: "currency",
-              currency: "VND",
-            })}{" "}
-            VND
-          </td>
-          <td className="text-info">{item.type}</td>
-          <td>{item.details}</td>
-        </tr>
-      );
-    });
-    setRowData(row);
-  }, [account]);
-
-  useEffect(() => {
     if (infoAccount === "") {
       setRowData("");
       setInfoAccount("");
