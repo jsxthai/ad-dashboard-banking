@@ -34,7 +34,7 @@ export default function employee(state = initialState, action) {
         ...state,
         isLogin: false,
         token: null,
-        userData: {},
+        userData: "",
       };
     default:
       return state;

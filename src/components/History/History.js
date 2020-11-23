@@ -1,35 +1,71 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NameNav from "../Nav/NameNav";
-import { queryAccount } from "../../actions/accounts";
+import { fetchHistory } from "../../actions/history";
 
 const History = () => {
-  // case: infoAccount is accountNumber
-
-  const account = useSelector((state) => state.accounts);
-  const [infoAccount, setInfoAccount] = useState("");
+  const history = useSelector((state) => state.history);
+  const [accountNumber, setAccountNumber] = useState("");
+  const [selectType, setSelectType] = useState("transfer");
   const [rowData, setRowData] = useState("");
 
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(queryAccount(infoAccount));
+    dispatch(fetchHistory(accountNumber));
   };
 
   useEffect(() => {
-    if (infoAccount === "") {
+    // console.log(history);
+    const row = history.map((his, key) => {
+      return (
+        <tr key={key + 1}>
+          <td>{key + 1}</td>
+          <td>
+            {new Date(parseInt(his.date))
+              .toLocaleDateString("en-GB")
+              .toString()}
+            {" - "}
+            {new Date(parseInt(his.date))
+              .toLocaleTimeString("it-IT")
+              .toString()}
+          </td>
+          <td>{his.accountSource}</td>
+          <td>
+            {" "}
+            {(his.mount || 0).toLocaleString("en-US", {
+              // style: "currency",
+              currency: "VND",
+            })}{" "}
+            VND
+          </td>
+          <td className="text-info">{his.typeTrans}</td>
+          <td>{his.detail}</td>
+        </tr>
+      );
+    });
+    setRowData(row);
+  }, [history]);
+
+  useEffect(() => {
+    if (accountNumber === "") {
       setRowData("");
-      setInfoAccount("");
+      setAccountNumber("");
     }
-  }, [infoAccount]);
+  }, [accountNumber]);
 
   const handleChangeInputInfoAccount = (e) => {
-    setInfoAccount(e.target.value);
+    setAccountNumber(e.target.value);
   };
 
   const handleClear = () => {
     setRowData("");
-    setInfoAccount("");
+    setAccountNumber("");
     dispatch({ type: "CLEAR_QUERY_ACCOUNT" });
+  };
+
+  const handleChangeSelect = (e) => {
+    setSelectType(e.target.value);
+    console.log(e.target.value);
   };
 
   return (
@@ -40,7 +76,7 @@ const History = () => {
           <div className="row ">
             {/* // content */}
             {/* input  */}
-            <div className="col-md-6">
+            <div className="col-md-4">
               <div className="form-group">
                 <label className="bmd-label-floating">
                   Enter account number ...
@@ -49,12 +85,29 @@ const History = () => {
                   type="text"
                   className="form-control"
                   name="infoAccount"
-                  value={infoAccount}
+                  value={accountNumber}
                   onChange={handleChangeInputInfoAccount}
                 ></input>
               </div>
             </div>
-            <div className="col-md-6">
+
+            <div className="col-md-2">
+              <div className="form-group">
+                <select
+                  className="custom-select"
+                  required
+                  onChange={handleChangeSelect}
+                  value={selectType}
+                >
+                  <option value>Select type</option>
+                  <option value={1}>Transfer</option>
+                  <option value={2}>Receive money</option>
+                  <option value={3}>Debt payment</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="col-md-4">
               <button
                 type=""
                 className="btn btn-primary pull-left"
@@ -88,7 +141,7 @@ const History = () => {
                           <th></th>
                           <th>Date</th>
                           <th>Account number</th>
-                          <th>Money number</th>
+                          <th>Mount</th>
                           <th>Type</th>
                           <th>Details</th>
                         </tr>
