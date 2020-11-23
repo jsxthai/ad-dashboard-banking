@@ -73,7 +73,7 @@ const Nav = () => {
               onClick={() => handleClick("his")}
             >
               <Link to="/history" className="nav-link">
-                <i className="material-icons">search</i>History User
+                <i className="material-icons">search</i>History Transaction
               </Link>
             </li>
             <li

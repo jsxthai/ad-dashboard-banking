@@ -21,7 +21,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(fetchTotalUsers());
     setTotalUsers(dashboard.totalUsers);
-  }, [dispatch, dashboard]);
+  }, [dispatch, dashboard.totalUsers]);
 
   const listUserNew = state.map((user, key) => (
     <tr key={key}>
