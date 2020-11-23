@@ -10,7 +10,3 @@ export function fetchUsers(startDate, endDate) {
 export function createUser(dataUser) {
   return axios.post(url, dataUser);
 }
-
-export function getTotalUser(url) {
-  return axios.get(`/api/total-user`);
-}

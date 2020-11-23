@@ -77,6 +77,10 @@ const History = () => {
     setSelectType(e.target.value);
   };
 
+  const styleColor = {
+    color: "#f2f2f2",
+  };
+
   return (
     <>
       <NameNav name={"History"} />
@@ -91,6 +95,7 @@ const History = () => {
                   Enter account number ...
                 </label>
                 <input
+                  style={styleColor}
                   type="text"
                   className="form-control"
                   name="infoAccount"

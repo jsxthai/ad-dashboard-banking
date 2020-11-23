@@ -4,6 +4,7 @@ import login from "./login";
 import payin from "./payin";
 import accounts from "./accounts";
 import history from "./history";
+import dashboard from "./dashboard";
 
 export default combineReducers({
   users,
@@ -11,4 +12,5 @@ export default combineReducers({
   payin,
   accounts,
   history,
+  dashboard,
 });

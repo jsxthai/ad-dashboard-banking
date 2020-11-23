@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NameNav from "../Nav/NameNav";
 import { fetchUsers } from "../../actions/users";
-import { getTotalUser } from "../../api/users";
+import { fetchTotalUsers } from "../../actions/dashboard";
 
 const Dashboard = () => {
   // use selector -> reducers
   const state = useSelector((state) => state.users);
-  const [totalUsers, settotalUsers] = useState(0);
+  const dashboard = useSelector((state) => state.dashboard);
+
+  const [totalUsers, setTotalUsers] = useState(0);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -17,12 +19,9 @@ const Dashboard = () => {
 
   //
   useEffect(() => {
-    const fetchTotalUsers = async () => {
-      const getTotal = await getTotalUser();
-      settotalUsers(getTotal.data.totalUsers || 0);
-    };
-    fetchTotalUsers();
-  }, []);
+    dispatch(fetchTotalUsers());
+    setTotalUsers(dashboard.totalUsers);
+  }, [dispatch, dashboard]);
 
   const listUserNew = state.map((user, key) => (
     <tr key={key}>
